@@ -1,0 +1,73 @@
+@charset "UTF-8";	
+
+body {
+    background-image:url("earth2.jpg");
+} 
+
+table.main {
+    border: 1px solid #555;
+    opacity:0.9;
+    filter: alpha(opacity=90);
+
+}
+
+table.main tr {
+	background:#404040;
+	color:#fff;
+}
+
+
+table.main td {
+	/*border: 1px solid #555;
+    padding: 10px;
+    text-align: center;*/
+
+
+    border: 1px solid #555;
+	text-align: center;
+    padding: 3px;  
+    background-color:#151515 !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#151515), to(#404040)) !important;
+    background-image: -webkit-linear-gradient(top, #151515, #404040) !important;
+    background-image:    -moz-linear-gradient(top, #151515, #404040) !important;
+    background-image:     -ms-linear-gradient(top, #151515, #404040) !important;
+    background-image:      -o-linear-gradient(top, #151515, #404040) !important;
+    background-image:         linear-gradient(top, #151515, #404040) !important;
+	color:#fff !important;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+	font-weight:normal;
+}
+
+/*table.main .select_and_info td {
+	border: 1px solid #555;
+    padding: 2px;
+    text-align: center; 
+}*/
+
+table.main .category {
+	font-weight: bolder;
+    font-size: large;
+	float: left;
+}
+
+table.main td.toLeft {
+	text-align: left;
+}
+
+table.main td.map {
+    padding: 15px;
+}
+
+table.main td.news {
+    padding: 20px;
+}
+
+table.main div#map {
+    height: 700px;
+    width: 650px;
+}
+
+
+table.main .subcategory {
+	font-weight: bold;	
+}

@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="simple-slider.css" rel="stylesheet" type="text/css" />
+		<link href="bootstrap.css" rel="stylesheet">
+
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="gmaps.js" charset="ISO-8859-1"> </script>
+		<script type="text/javascript" src="dictionary.js" charset="ISO-8859-1"> </script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+		<script type="text/javascript" src="simple-slider.js"></script>
+		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="gearth.js"></script>
+		<script type="text/javascript" src="bootstrap.js"></script>
+		
+		<script type="text/javascript" src="classes.js"></script>
+		<script type="text/javascript" src="modules.js"></script>
+		<script type="text/javascript" src="altMain.js"></script> 
+		
+		
+		<script> 
+			
+			$(document).ready (function() {
+
+				$.ajax ({
+           			type: "GET",
+		            url: "GEO-SAT.xml",
+		            dataType: "xml",
+		            success: altMain
+        		});
+
+			});
+
+		</script>
+
+	</head>
+
+	<body>
+		<table id='main'>
+			<tr>
+				<td class='news'colspan="2">
+				<!--	<marquee width="70%" direction="left" loop="infinite" scrollamount="4"><strong><font color="red">Latest news</font></strong></marquee>-->
+					<span class="subcategory" id="latlong" align=center> Latitude: Longitude: </span> <br> <br>
+					<span class="subcategory" id="satinfo"> Satellites: </span>
+				</td>
+			</tr>
+			<tr>
+				<td class='map'> <div id="map"></div> </td>
+				<td>
+					<table class='select_and_info'>
+						<tr> <td>
+							<span class="label label-default"> Selection of the satellite </span> <br><br>
+							<table class='satellite_select' style="margin:auto;">
+
+								<tr> <td> 
+									<span class="subcategory"> <div style="margin:5px;"> By longitude: </div></span>
+										<form name="longitude" id="lng" method="POST">
+											<table class="form" align=center> 
+											<!--	<div class="form-group"> -->	
+												<tr>
+													<td> 
+														<label>LONG</label> 
+														<input type="text" class="form-control" name="longitude" id="lng_text" placeholder="Enter satellite longitude"></td>
+												</tr>
+												<tr><td colspan="2" align=center> 
+													<button type="submit" class="btn btn-success">Search</button>
+												</td></tr>
+										<!--	</div>  -->
+											</table>
+										</form>
+								</td> </tr>
+
+								<tr> <td> 
+								 	<span class="subcategory"><div style="margin:5px;"> By Satellite name/ID: </div></span>
+										<form name="name_and_id" id="name_id" method="POST">
+											<table class="form"> 
+											<!--	<div class="form-group">	-->
+												<tr>
+													<td> <label>Name</label> <input type="text" class="form-control" name="latitude" id="name_text" placeholder="Enter satellite name"> </td>
+													<td> <label>ID</label> <input type="text" class="form-control" name="longitude" id="id_text" placeholder="Enter satellite ID"> </td>
+												</tr>
+												<tr><td colspan="2" align=center> 
+													<button type="submit" class="btn btn-success">Search</button> 
+												</td></tr>
+										<!--	</div>  -->	
+											</table>
+										</form>
+								</td> </tr>
+
+								<tr> <td>
+									<span class="subcategory" id="slider_val"> Longitude slider: </span> <br>
+									<!--<input type="range" id='slider' min="0" max="180" value="25">-->
+									<div align=center style="margin:10px;"><input type="text" data-slider-step="1" data-slider-range="-180,180" data-slider="true" id="slider"></div>
+
+								</td> </tr>
+							</td> </tr>
+							</table>
+
+								<tr> <td> 
+									<span class="label label-default"> Selection of the observer </span> <br><br>
+										<table>
+												<tr><td>
+											<span class="subcategory"><div style="margin:5px;"> By latitude/longitude:</div> </span>
+												<form name="lat_and_long" id="obs" method="POST">
+													<table class="form">
+													<!--	<div class="form-group"> -->
+														<tr>
+															<td><label> LAT </label> <input type="text" name="latitude" class="form-control" id="obs_lat" placeholder="Enter latitude"> </td>
+															<td><label> LONG </label> <input type="text" name="longitude" class="form-control" id="obs_lng" placeholder="Enter longitude"> </td>
+														</tr>
+														<tr><td colspan="2" align=center> 
+															<button type="submit" class="btn btn-success">Search</button> 
+														</td></tr>
+												<!--	</div> -->
+													</table>
+												</form>
+											</td></tr>
+										</table>
+								</td> </tr>
+						
+
+
+						<tr><td> 
+							<span class="label label-default">Application settings </span><br><br>
+							<br> 
+							<form>
+								<!-- <table class="options" style="text-align: left " align=center> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option1" value="op1">Display satellites name</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option2" value="op2">Display Ecuator line</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option3" id="user_check" value="op3">Display user position</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option4" value="op4">Display satellite-user line of sight</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option5" value="op5">Control camera POV</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option6" value="op6">Switch to night view</tr></td> -->
+									<!-- <tr><td class="toLeft"><input type="checkbox" name="option7" id="to_earth" value="op7">Switch to Google Earth</tr></td> -->
+								<!-- </table> -->
+
+								  <table class="options" style="text-align: left " align=center>
+								    <div class="input-group">
+								      <tr><td>
+								      	<span class="input-group-addon">
+								        <input type="checkbox" id='user_check'>
+								      </span></td>
+								      <td><span class="subcategory"><div style="margin:10px;"> Show user position</div> </span></td>
+								      </tr>
+								    </div><!-- /input-group -->
+
+								    <div class="input-group">
+								    <tr><td>
+								      <span class="input-group-addon">
+								        <input type="checkbox" id='to_earth'>
+								      </span></td>
+								    <td>  <span class="subcategory"><div style="margin:10px;"> Switch to Google Earth</div> </span></td>
+								</tr>
+								    </div><!-- /input-group -->
+
+							</form> 
+						</td></tr>
+					</table>
+				</td>	
+			</tr>
+		</table>
+	</body>
+</html>

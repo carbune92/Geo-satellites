@@ -1,0 +1,38 @@
+function altMain (xml) {
+
+
+	appModule.parseXml(xml);
+	var crtModule = mapModule;
+
+	/* main functionality event binding */
+	$('#map').ready(mapModule.initMap);
+
+	$('#lng').submit(mapModule.submitLng);
+
+	$('#name_id').submit(mapModule.submitNameId);
+
+	$('#obs').submit(mapModule.submitObs);
+
+	$('#slider').bind("slider:changed", mapModule.sliderCallback);
+
+	/*options event binding */
+	/*
+	$("#to_earth").change ( function () {
+
+		if ($('#to_earth').is(':checked')) {
+			console.log ( $('#to_earth').val() );
+			console.log ( crtModule );
+
+			crtModule = earthModule;
+			earthModule.initEarth();
+		} else {
+			console.log ( $('to_earth').val() );
+			console.log ( crtModule );
+
+			crtModule = mapModule;
+          		mapModule.initMap();
+		}
+		
+	});
+	*/
+}
